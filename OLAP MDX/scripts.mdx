@@ -1,0 +1,47 @@
+
+// SELECT TOP 10 CITIES BY TOTAL CASES ORDER
+WITH MEMBER
+	[Measures].[International] AS
+	[Measures].[Not Domestic]
+SELECT
+NON EMPTY{
+		[Measures].[Total cases],
+		[Measures].[Arrest],
+		[Measures].[International]
+} ON COLUMNS,
+NON EMPTY {
+	ORDER(
+		TOPCOUNT(
+			[Dim Area].[Area Name].ALLMEMBERS, 10
+		),
+		[Measures].[Total cases],
+		DESC
+	)
+} ON ROWS
+FROM [Chicago Crimes DDS]
+;
+
+// 
+SELECT
+NON EMPTY {
+	[Measures].[Total cases],
+	[Measures].[Arrest],
+	[Measures].[Domestic]
+} ON COLUMNS,
+NON EMPTY {
+	[Dim Date].[Hierarchy].[Year],
+	[Dim Date].[Hierarchy]
+} ON ROWS
+FROM [Chicago Crimes DDS];
+
+SELECT
+NON EMPTY {
+	[Dim Date].[Hierarchy].[Year],
+	[Dim Date].[Hierarchy]
+} ON COLUMNS,
+NON EMPTY {
+	[Dim IUCR].[Iucr Type].[Iucr Type]
+} ON ROWS
+FROM [Chicago Crimes DDS]
+WHERE [Measures].[Total cases]
+;

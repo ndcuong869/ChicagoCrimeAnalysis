@@ -1,0 +1,74 @@
+CREATE DATABASE ChicagoCrimesMetadata;
+GO
+USE ChicagoCrimesMetadata;
+GO
+
+CREATE TABLE LastUpdated(
+	last_update_id INT IDENTITY(1, 1) PRIMARY KEY,
+	process_name VARCHAR(50) NOT NULL,
+	update_timestamp DATETIME NOT NULL
+)
+
+CREATE TABLE CurrentTime(
+	current_time_execution DATETIME
+)
+
+--DROP TABLE Metadata;
+--DROP TABLE CurrentTime;
+
+INSERT INTO LastUpdated
+VALUES ('NDS weekly incremental', '1999-01-01');
+
+INSERT INTO LastUpdated
+	VALUES('DDS monthly incremental', '1999-01-01');
+
+INSERT INTO CurrentTime
+	VALUES('1999-01-01');
+
+CREATE TABLE [Data Dictionary]
+(
+	[key] CHAR(100) NOT NULL,
+	[value] CHAR(100)
+);
+
+INSERT INTO [Data Dictionary]
+	VALUES('TAXICAB', 'TAXI CAB')
+
+INSERT INTO [Data Dictionary]
+	VALUES('"CTA ""L"" PLATFORM"', 'CTA PLATFORM');
+
+INSERT INTO [Data Dictionary]
+	VALUES('"CTA ""L"" TRAIN"', 'CTA TRAIN');
+
+INSERT INTO [Data Dictionary]
+	VALUES('MOTEL', 'HOTEL/MOTEL');
+
+INSERT INTO [Data Dictionary]
+	VALUES('HOTEL', 'HOTEL/MOTEL');
+
+INSERT INTO [Data Dictionary]
+	VALUES('NURSING HOME', 'NURSING HOME/RETIREMENT HOME');
+
+INSERT INTO [Data Dictionary]
+	VALUES('POOLROOM', 'POOL ROOM');
+
+INSERT INTO [Data Dictionary]
+	VALUES('HALLWAY', 'RESIDENCE PORCH/HALLWAY');
+
+INSERT INTO [Data Dictionary]
+	VALUES('VACANT LOT', 'VACANT LOT/LAND');
+
+INSERT INTO [Data Dictionary]
+	VALUES('TAVERN', 'TAVERN/LIQUOR STORE');
+
+INSERT INTO [Data Dictionary]
+	VALUES('GOVERNMENT BUILDING', 'GOVERNMENT BUILDING/PROPERTY');
+
+INSERT INTO [Data Dictionary]
+	VALUES('GARAGE', 'GARAGE/AUTO REPAIR');
+
+INSERT INTO [Data Dictionary]
+	VALUES('BARBERSHOP', 'BARBER SHOP/BEAUTY SALON');
+
+INSERT INTO [Data Dictionary]
+	VALUES('', 'UNKNOWN');
